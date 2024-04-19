@@ -45,7 +45,7 @@ jobs:
       - uses: actions/github-script@v6
         with:
           script: |
-            const result = await github.request('POST /repos/{owner}/{repo}/check-runs/{check_run_id}', {
+            const result = await github.request('PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}', {
               owner: context.repo.owner,
               repo: context.repo.repo,
               check_run_id: '${{ steps.check.outputs.result }}'
