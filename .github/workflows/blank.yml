@@ -41,3 +41,25 @@ jobs:
             return result.data.id;
 
       - run: echo "${{ steps.check.outputs.result }}"
+
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const result = await github.request('POST /repos/{owner}/{repo}/check-runs/{check_run_id}', {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              check_run_id: '${{ steps.check.outputs.result }}'
+              name: 'mighty_readme',
+              head_sha: '${{ github.sha }}',
+              conclusion: '${{ job.status }}',
+              // external_id: '42',
+              // started_at: '2018-05-04T01:14:52Z',
+              // output: {
+              //   title: 'Mighty Readme report',
+              //   summary: '',
+              //   text: ''
+              // },
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              }
+            })
