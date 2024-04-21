@@ -48,7 +48,7 @@ jobs:
             const result = await github.request('PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}', {
               owner: context.repo.owner,
               repo: context.repo.repo,
-              check_run_id: '${{ steps.check.outputs.result }}'
+              check_run_id: '${{ steps.check.outputs.result }}',
               name: 'mighty_readme',
               head_sha: '${{ github.sha }}',
               conclusion: '${{ job.status }}',
