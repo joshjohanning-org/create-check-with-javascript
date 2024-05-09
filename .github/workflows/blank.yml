@@ -31,7 +31,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               name: 'mighty_readme',
-              head_sha: '${{ github.sha }}',
+              head_sha: '${{ github.sha }}', # maybe also consider ${{ github.event.pull_request.head.sha }}
               status: 'in_progress',
               // external_id: '42',
               // started_at: '2018-05-04T01:14:52Z',
@@ -57,7 +57,7 @@ jobs:
               repo: context.repo.repo,
               check_run_id: '${{ steps.check.outputs.result }}',
               name: 'mighty_readme',
-              head_sha: '${{ github.sha }}',
+              head_sha: '${{ github.sha }}', # maybe also consider ${{ github.event.pull_request.head.sha }}
               conclusion: '${{ job.status }}',
               // external_id: '42',
               // started_at: '2018-05-04T01:14:52Z',
